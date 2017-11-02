@@ -7,7 +7,7 @@ const
   request = require('request'),
   port = process.env.PORT || 5000,
   app = express(),
-  localServer = "mongodb://localhost:27017/mediumreact",
+  localServer = "mongodb://localhost:27017/mediumreact1",
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/scrape', (req, res) => {
-  request('https://medium.com/topic/technology', (err, res, html) => {
+  request('https://medium.com/topic/technology', (err, resp, html) => {
 
     const $ = cheerio.load(html);
 
@@ -42,18 +42,24 @@ app.get('/scrape', (req, res) => {
 
       result.title = $(this).find('h3').text();
       result.url = $(this).children('a').attr('href');
-      result.time = $(this).parent().siblings('div.u-flex').find('time').attr('datetime');
-      console.log(result);
+      result.date = $(this).parent().siblings('div.u-flex').find('time').attr('datetime');
       const entry = new Article(result);
 
       entry.save((err, doc) => {
         err ? console.log(err) : console.log(doc)
       });
-
     });
   });
-  res.send('scrape complete')
-})
+  res.send('hi');
+});
+
+app.get('/api/articles', (req, res) => {
+  Article.find({
+    saved: false
+  }, (err, articles) => {
+    res.send(articles)
+  })
+});
 
 app.listen(port, () => {
   console.log(`App running on port ${port}`)
