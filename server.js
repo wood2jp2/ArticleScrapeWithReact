@@ -32,6 +32,24 @@ app.get('/', (req, res) => {
   res.send('YOLO')
 });
 
+app.get('/api/saved', (req, res) => {
+  Article.find({
+    saved: true
+  }, (err, articles) => {
+    res.send(articles)
+  })
+});
+
+app.post('/api/saved', (req, res) => {
+  Article.findOneAndUpdate({
+    '_id': req.params.id
+  }, {
+    saved: req.body.saved
+  })
+});
+
+app.delete('/api/saved')
+
 app.get('/scrape', (req, res) => {
   request('https://medium.com/topic/technology', (err, resp, html) => {
 
