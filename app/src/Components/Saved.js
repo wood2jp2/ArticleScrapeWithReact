@@ -1,7 +1,15 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 
 class Saved extends Component {
 
+  render() {
+    return (
+      <div>
+        <h1>Saved Page</h1>
+      </div>
+    )
+  }
+
 }
 
-default export Saved
+export default Saved

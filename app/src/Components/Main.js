@@ -1,9 +1,16 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 
 class Main extends Component {
 
 
-  
+
+render() {
+  return (
+    <div>
+      <h1>blah</h1>
+    </div>
+  )
+}
 }
 
-default export Main
+export default Main
