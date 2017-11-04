@@ -4,6 +4,7 @@ import Main from './Components/Main';
 import Search from './Components/Search';
 import Saved from './Components/Saved';
 import Header from './Components/Header/Header';
+import Footer from './Components/Footer/Footer';
 
 class App extends Component {
   render() {
@@ -16,8 +17,7 @@ class App extends Component {
             <Header />
             <Route exact path='/' component={Main} />
             <Route exact path='/main' component={Main} />
-            <Route exact path='/search' component={Search} />
-            <Route exact path='/saved' component={Saved} />
+            <Footer />
           </div>
         </Router>
       </div>
