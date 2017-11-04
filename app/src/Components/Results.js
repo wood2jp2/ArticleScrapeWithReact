@@ -5,7 +5,7 @@ class Results extends Component {
   constructor() {
     super();
     this.state = {
-      headline: '',
+      title: '',
       url: '',
       date: ''
     }
@@ -14,6 +14,11 @@ class Results extends Component {
   fetchResults = e => {
     e.preventDefault();
     console.log('hi');
+    axios.get('/api/articles')
+      .then(res=> {
+        console.log(res);
+        console.log('heyehey')
+      })
   }
 
   render() {
