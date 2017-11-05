@@ -15,9 +15,11 @@ class Results extends Component {
     e.preventDefault();
     console.log('hi');
     axios.get('/api/articles')
-      .then(res=> {
-        console.log(res);
-        console.log('heyehey')
+      .then(res => {
+        this.setState ({
+          results: res.data
+        });
+        console.log(this.state.results)
       })
   }
 
@@ -30,6 +32,20 @@ class Results extends Component {
           }}>
           Fetch Results
         </button>
+        <span>
+          {this.state.results &&
+            this.state.results.map(x => {
+              return (
+                <div key={x._id}>
+                  <h1>{ x.title }</h1>
+                  <a href={x.url}> URL</a>
+                  <p>{ x.date }</p>
+                </div>
+              )
+
+            })
+          }
+        </span>
       </div>
     )
   }
