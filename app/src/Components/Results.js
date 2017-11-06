@@ -13,16 +13,21 @@ class Results extends Component {
 
   saveArticle = e => {
     e.preventDefault();
-    axios.post('/api/saved')
+    axios.put('/api/articles', {
+      id: e.target.name,
+      saved: true
+    })
       .then(res => {
-        console.log(res)
+        console.log('something')
       })
-    console.log('attempt Save');
+      .catch(err => {
+        console.log(err)
+      });
+      console.log('fdsasdfsasdfsa')
   }
 
   fetchResults = e => {
     e.preventDefault();
-    console.log('hi');
     axios.get('/api/articles')
       .then(res => {
         this.setState ({
@@ -49,6 +54,7 @@ class Results extends Component {
                      target='_blank'><h1>{ x.title }</h1></a>
                   <p>{ x.date.substr(0,10) }</p>
                   <button
+                    name= { x._id }
                     onClick={e => {
                       this.saveArticle(e)
                     }}>Save</button>

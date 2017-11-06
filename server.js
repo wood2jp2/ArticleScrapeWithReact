@@ -40,12 +40,14 @@ app.get('/api/saved', (req, res) => {
   })
 });
 
-app.post('/api/saved', (req, res) => {
+app.put('/api/articles', (req, res) => {
+  console.log(req);
   Article.findOneAndUpdate({
     '_id': req.params.id
   }, {
-    saved: req.body.saved
-  })
+    saved: true
+  });
+  res.send('fdsasosokosksok')
 });
 
 app.delete('/api/saved')
