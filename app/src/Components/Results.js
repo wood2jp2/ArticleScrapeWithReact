@@ -37,9 +37,8 @@ class Results extends Component {
             this.state.results.map(x => {
               return (
                 <div key={x._id}>
-                  <h1>{ x.title }</h1>
-                  <a href={x.url}> URL</a>
-                  <p>{ x.date }</p>
+                  <a href={x.url}><h1>{ x.title }</h1></a>
+                  <p>{ x.date.substr(0,10) }</p>
                 </div>
               )
 

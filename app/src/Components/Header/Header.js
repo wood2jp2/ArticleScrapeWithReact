@@ -4,7 +4,8 @@ const Header = () => {
     return (
       <div>
         <header>
-          <h1>Header Component</h1>
+          <h1>Medium Technology Article Scrubber</h1>
+          <p>Search for and annotate articles of interest!</p>
         </header>
       </div>
     )
