@@ -7,7 +7,7 @@ const
   request = require('request'),
   port = process.env.PORT || 5000,
   app = express(),
-  localServer = "mongodb://localhost:27017/mediumreact1",
+  localServer = "mongodb://localhost:27017/mediumreact6",
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -59,7 +59,7 @@ app.get('/scrape', (req, res) => {
       var result = {};
 
       result.title = $(this).find('h3').text();
-      result.url = $(this).children('a').attr('href');
+      result.url = $(this).find('a').attr('href');
       result.date = $(this).parent().siblings('div.u-flex').find('time').attr('datetime');
       const entry = new Article(result);
 
@@ -68,7 +68,7 @@ app.get('/scrape', (req, res) => {
       });
     });
   });
-  res.send('hi');
+res.send('scrape complete')
 });
 
 app.get('/api/articles', (req, res) => {
