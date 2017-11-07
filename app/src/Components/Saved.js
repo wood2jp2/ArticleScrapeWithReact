@@ -22,6 +22,18 @@ class Saved extends Component {
       })
   }
 
+  deleteArticle = e => {
+    e.preventDefault();
+    axios.delete(`/api/saved/${e.target.name}`)
+      .then(res => {
+        console.log('deleted doc');
+      })
+      .catch(err => {
+        return err
+      });
+    this.refreshSaved(e);
+  }
+
   render() {
     return (
       <div>

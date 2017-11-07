@@ -52,7 +52,14 @@ app.put('/api/articles/:id', (req, res) => {
   // res.send('fdsasosokosksok')
 });
 
-// app.delete('/api/saved');
+app.delete('/api/saved/:id', (req, res) => {
+  Article.find({
+    '_id': req.params.id
+  })
+  .remove()
+  .exec();
+  res.send('deleted')
+});
 
 app.get('/scrape', (req, res) => {
   request('https://medium.com/topic/technology', (err, resp, html) => {
