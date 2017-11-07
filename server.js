@@ -72,7 +72,7 @@ app.get('/scrape', (req, res) => {
       });
     });
   });
-res.send('scrape complete')
+res.redirect('/api/articles')
 });
 
 app.get('/api/articles', (req, res) => {

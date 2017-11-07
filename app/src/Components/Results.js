@@ -15,12 +15,13 @@ class Results extends Component {
     e.preventDefault();
     axios.put(`/api/articles/${e.target.name}`)
       .then(res => {
-        console.log('something')
+        console.log('save complete');
+        this.fetchResults(e);
       })
       .catch(err => {
         console.log(err)
       });
-      console.log('fdsasdfsasdfsa')
+
   }
 
   fetchResults = e => {
