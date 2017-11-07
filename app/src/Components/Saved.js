@@ -37,7 +37,7 @@ class Saved extends Component {
   render() {
     return (
       <div>
-        <h1>Saved Page</h1>
+        <h1>Saved Articles</h1>
         <button
           onClick={e=> {
             this.refreshSaved(e)

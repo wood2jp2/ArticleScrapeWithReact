@@ -28,8 +28,9 @@ class Results extends Component {
     e.preventDefault();
     axios.get('/api/articles')
       .then(res => {
+        const topFiveResults = res.data.slice(0,5);
         this.setState ({
-          results: res.data
+          results: topFiveResults
         });
         console.log(this.state.results)
       })
@@ -38,6 +39,7 @@ class Results extends Component {
   render() {
     return (
       <div className='currentResults'>
+        <h1>Results</h1>
         <button
           onClick={(e) => {
             this.fetchResults(e)
