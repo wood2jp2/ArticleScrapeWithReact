@@ -13,10 +13,7 @@ class Results extends Component {
 
   saveArticle = e => {
     e.preventDefault();
-    axios.put('/api/articles', {
-      id: e.target.name,
-      saved: true
-    })
+    axios.put(`/api/articles/${e.target.name}`)
       .then(res => {
         console.log('something')
       })

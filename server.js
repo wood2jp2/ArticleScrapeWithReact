@@ -7,7 +7,7 @@ const
   request = require('request'),
   port = process.env.PORT || 5000,
   app = express(),
-  localServer = "mongodb://localhost:27017/mediumreact6",
+  localServer = "mongodb://localhost:27017/mediumreact10",
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -34,23 +34,25 @@ app.get('/', (req, res) => {
 
 app.get('/api/saved', (req, res) => {
   Article.find({
-    saved: true
+    'saved': true
   }, (err, articles) => {
     res.send(articles)
   })
 });
 
-app.put('/api/articles', (req, res) => {
+app.put('/api/articles/:id', (req, res) => {
   console.log(req);
   Article.findOneAndUpdate({
     '_id': req.params.id
   }, {
-    saved: true
+    'saved': true
+  }, (err, articles) => {
+    res.send(articles)
   });
-  res.send('fdsasosokosksok')
+  // res.send('fdsasosokosksok')
 });
 
-app.delete('/api/saved')
+// app.delete('/api/saved');
 
 app.get('/scrape', (req, res) => {
   request('https://medium.com/topic/technology', (err, resp, html) => {
@@ -75,7 +77,7 @@ res.send('scrape complete')
 
 app.get('/api/articles', (req, res) => {
   Article.find({
-    saved: false
+    'saved': false
   }, (err, articles) => {
     res.send(articles)
   })
