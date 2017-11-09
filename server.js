@@ -7,7 +7,7 @@ const
   request = require('request'),
   port = process.env.PORT || 5000,
   app = express(),
-  localServer = "mongodb://localhost:27017/mediumreact24",
+  localServer = "mongodb://localhost:27017/mediumreact25",
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -84,7 +84,7 @@ app.get('/scrape', (req, res) => {
   });
 });
 
-app.put('/scrape/:id', (req, res) => {
+app.put('/api/article/:id', (req, res) => {
   let date = new Date();
   console.log(req);
   Article.findOneAndUpdate({

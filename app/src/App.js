@@ -14,8 +14,9 @@ class App extends Component {
         <Router>
 
           <div className='routerDiv'>
-            <Header />
+            <Header location={window.location.pathname}/>
             <Route exact path='/' component={Main} />
+            <Route exact path='/saved' component={Saved} />
             <Footer />
           </div>
         </Router>

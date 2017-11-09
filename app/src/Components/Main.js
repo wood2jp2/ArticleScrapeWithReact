@@ -11,7 +11,6 @@ render() {
     <div>
       <Search />
       <Results />
-      <Saved />
     </div>
   )
 }
