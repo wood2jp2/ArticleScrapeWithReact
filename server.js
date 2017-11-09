@@ -7,7 +7,7 @@ const
   request = require('request'),
   port = process.env.PORT || 5000,
   app = express(),
-  localServer = "mongodb://localhost:27017/mediumreact10",
+  localServer = "mongodb://localhost:27017/mediumreact24",
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -41,15 +41,16 @@ app.get('/api/saved', (req, res) => {
 });
 
 app.put('/api/articles/:id', (req, res) => {
+  let date = new Date();
   console.log(req);
   Article.findOneAndUpdate({
     '_id': req.params.id
   }, {
-    'saved': true
+    'saved': true,
+    'savedDate': date
   }, (err, articles) => {
     res.send(articles)
   });
-  // res.send('fdsasosokosksok')
 });
 
 app.delete('/api/saved/:id', (req, res) => {
@@ -63,7 +64,7 @@ app.delete('/api/saved/:id', (req, res) => {
 
 app.get('/scrape', (req, res) => {
   request('https://medium.com/topic/technology', (err, resp, html) => {
-
+    let something = [];
     const $ = cheerio.load(html);
 
     $('div.u-flexColumnTop').each(function(i, element) {
@@ -73,13 +74,27 @@ app.get('/scrape', (req, res) => {
       result.url = $(this).find('a').attr('href');
       result.date = $(this).parent().siblings('div.u-flex').find('time').attr('datetime');
       const entry = new Article(result);
-
+      something.push(entry);
       entry.save((err, doc) => {
         err ? console.log(err) : console.log(doc)
       });
+
     });
+    res.send(something);
   });
-res.redirect('/api/articles')
+});
+
+app.put('/scrape/:id', (req, res) => {
+  let date = new Date();
+  console.log(req);
+  Article.findOneAndUpdate({
+    '_id': req.params.id
+  }, {
+    'saved': true,
+    'savedDate': date
+  }, (err, articles) => {
+    res.send(articles)
+  });
 });
 
 app.get('/api/articles', (req, res) => {

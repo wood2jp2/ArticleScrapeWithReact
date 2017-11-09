@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Saved from './Saved';
+import ArticleComponent from './ArticleComponent';
 
 class Results extends Component {
   constructor() {
@@ -13,7 +15,7 @@ class Results extends Component {
 
   saveArticle = e => {
     e.preventDefault();
-    axios.put(`/api/articles/${e.target.name}`)
+    axios.put(`/scrape/${e.target.name}`)
       .then(res => {
         console.log('save complete');
         this.fetchResults(e);
@@ -21,12 +23,13 @@ class Results extends Component {
       .catch(err => {
         console.log(err)
       });
-
   }
 
   fetchResults = e => {
     e.preventDefault();
-    axios.get('/api/articles')
+    axios.get('/api/articles', {
+      'saved': false
+    })
       .then(res => {
         const topFiveResults = res.data.slice(0,5);
         this.setState ({

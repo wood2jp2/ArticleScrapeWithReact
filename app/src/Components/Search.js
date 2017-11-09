@@ -43,7 +43,7 @@ class Search extends Component {
           value={this.state.endYear}
           onChange={this.handleChange}></input>
         <button
-          onClick={(e)=> {
+          onClick={e => {
             this.attemptSearch(e)
           }}>Search</button>
       </div>

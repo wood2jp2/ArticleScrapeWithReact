@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ArticleComponent from './ArticleComponent';
 
 class Saved extends Component {
 
@@ -22,7 +23,7 @@ class Saved extends Component {
       })
   }
 
-  deleteArticle = e => {
+  removeArticle = e => {
     e.preventDefault();
     axios.delete(`/api/saved/${e.target.name}`)
       .then(res => {
@@ -48,12 +49,12 @@ class Saved extends Component {
                 <div key={ x._id }>
                   <a href={ x.url }
                      target='_blank'><h1>{ x.title }</h1></a>
-                  <p>{ x.date.substr(0,10) }</p>
+                  <p>Date Saved: { x.savedDate }</p>
                   <button
                     name= { x._id }
                     onClick={e => {
-                      this.deleteArticle(e)
-                    }}>Delete</button>
+                      this.removeArticle(e)
+                    }}>Remove</button>
                 </div>
               )
             })

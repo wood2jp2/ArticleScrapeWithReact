@@ -18,6 +18,10 @@ var ArticleSchema = new Schema({
   saved: {
     type: Boolean,
     default: false
+  },
+  savedDate: {
+    type: String,
+    default: ''
   }
 });
 
