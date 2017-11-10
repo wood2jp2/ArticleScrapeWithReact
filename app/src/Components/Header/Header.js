@@ -5,7 +5,7 @@ const Header = (props) => {
     return (
       <div>
         <header>
-          <h1>Medium Technology Article Scrubber</h1>
+          <h1>New York Times Technology Article Scrubber</h1>
           <p>Search for and annotate articles of interest!</p>
           <ul>
             <li>

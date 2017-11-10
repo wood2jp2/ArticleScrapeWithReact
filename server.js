@@ -7,7 +7,7 @@ const
   request = require('request'),
   port = process.env.PORT || 5000,
   app = express(),
-  localServer = "mongodb://localhost:27017/mediumreact25",
+  localServer = "mongodb://localhost:27017/NYTreact05",
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -63,24 +63,39 @@ app.delete('/api/saved/:id', (req, res) => {
 });
 
 app.get('/scrape', (req, res) => {
-  request('https://medium.com/topic/technology', (err, resp, html) => {
-    let something = [];
+  Article.find({}, (err, doc) => {
+    doc.remove
+  });
+  request('https://www.nytimes.com/section/technology', (err, resp, html) => {
     const $ = cheerio.load(html);
 
-    $('div.u-flexColumnTop').each(function(i, element) {
+    $('article.story').each(function(i, element) {
       var result = {};
 
-      result.title = $(this).find('h3').text();
+      result.title = $(this).find('h2').text();
       result.url = $(this).find('a').attr('href');
-      result.date = $(this).parent().siblings('div.u-flex').find('time').attr('datetime');
+      let date = $(this).find('time').attr('datetime');
+      let convertToString = String(date).charAt(0);
+
+      if (convertToString === '1') {
+        let convertToSeconds = date * 1000;
+        let letsTryThis = new Date(convertToSeconds);
+        let cut = letsTryThis.toString().slice(4,15);
+        result.date = cut;
+      } else {
+        let last = new Date(date);
+        let cut = last.toString().slice(4,15);
+        result.date = cut;
+      };
+
       const entry = new Article(result);
-      something.push(entry);
+
       entry.save((err, doc) => {
         err ? console.log(err) : console.log(doc)
       });
 
     });
-    res.send(something);
+    res.send('something')
   });
 });
 
