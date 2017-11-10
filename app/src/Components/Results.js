@@ -57,7 +57,7 @@ class Results extends Component {
                 <div key={ x._id }>
                    <a href={ x.url }
                      target='_blank'><h1>{ x.title }</h1></a>
-                  <p>{ x.date.substr(0,10) }</p>
+                  <p>{ x.date }</p>
                   {/* <ArticleComponent props={x} onClick={e=>{
                     this.saveArticle(e)}}/> */}
                   <button

@@ -7,7 +7,7 @@ const
   request = require('request'),
   port = process.env.PORT || 5000,
   app = express(),
-  localServer = "mongodb://localhost:27017/NYTreact05",
+  localServer = "mongodb://localhost:27017/NYTreact07",
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -42,12 +42,13 @@ app.get('/api/saved', (req, res) => {
 
 app.put('/api/articles/:id', (req, res) => {
   let date = new Date();
+  let cut = date.toString().slice(4,15);
   console.log(req);
   Article.findOneAndUpdate({
     '_id': req.params.id
   }, {
     'saved': true,
-    'savedDate': date
+    'savedDate': cut
   }, (err, articles) => {
     res.send(articles)
   });
