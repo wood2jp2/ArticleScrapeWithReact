@@ -14,6 +14,7 @@ const ArticleComponent = props => {
                 href={ x.url }
                 target='_blank'><h1>{ x.title }</h1></a>
              <p>{ x.date }</p>
+
              {
                props.save &&
                <button
@@ -21,6 +22,15 @@ const ArticleComponent = props => {
                  onClick={props.onClick}
                  >Save</button>
              }
+
+             {
+               props.remove &&
+               <button
+                 name={ x._id }
+                 onClick={ props.onClick }
+                 >Remove</button>
+             }
+             
             </div>
           )
         })

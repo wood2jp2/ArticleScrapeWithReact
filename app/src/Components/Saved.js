@@ -43,6 +43,10 @@ class Saved extends Component {
           onClick={e=> {
             this.refreshSaved(e)
           }}>Refresh Saved Articles</button>
+
+          <ArticleComponent remove={ true } onClick={ e => {
+            this.removeArticle(e)
+          }} />
           {this.state.savedResults &&
             this.state.savedResults.map(x => {
               return (
