@@ -16,6 +16,7 @@ class Results extends Component {
 
   saveArticle = e => {
     e.preventDefault();
+    e.persist();
     console.log(e.target.name);
     axios.put(`/api/articles/${e.target.name}`)
       .then(res => {

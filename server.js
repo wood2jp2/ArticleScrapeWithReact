@@ -7,7 +7,7 @@ const
   request = require('request'),
   port = process.env.PORT || 5000,
   app = express(),
-  localServer = "mongodb://localhost:27017/NYTreact07",
+  localServer = "mongodb://localhost:27017/NYTreact08",
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -64,9 +64,7 @@ app.delete('/api/saved/:id', (req, res) => {
 });
 
 app.get('/scrape', (req, res) => {
-  Article.find({}, (err, doc) => {
-    doc.remove
-  });
+  Article.find({}).remove().exec();
   request('https://www.nytimes.com/section/technology', (err, resp, html) => {
     const $ = cheerio.load(html);
 
@@ -114,11 +112,20 @@ app.put('/api/article/:id', (req, res) => {
 });
 
 app.get('/api/articles', (req, res) => {
-  Article.find({
-    'saved': false
-  }, (err, articles) => {
-    res.send(articles)
-  })
+  if (!req.query.topic) {
+    Article.find({
+      'saved': false
+    }, (err, articles) => {
+      res.send(articles)
+    })
+  } else {
+   Article.find({
+      'title': { '$regex': req.query.topic, "$options": "i" }
+    }, (err, articles) => {
+      console.log(articles);
+      res.send(articles)
+    });
+  }
 });
 
 app.listen(port, () => {

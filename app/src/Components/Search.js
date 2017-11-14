@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
+import SearchResult from './SearchResult';
 
 class Search extends Component {
 
@@ -20,7 +22,26 @@ class Search extends Component {
 
   attemptSearch = e => {
     e.preventDefault();
-    console.log('lets search')
+    axios.get('/api/articles', {
+      params: {
+        topic: this.state.topic
+      }
+    })
+      .then( res => {
+        this.setState({
+          results: res.data
+        });
+        console.log(this.state.results);
+      });
+  }
+
+  clearInputs = e => {
+    e.preventDefault();
+    this.setState({
+      topic: '',
+      startYear: '',
+      endYear: ''
+    })
   }
 
   render() {
@@ -46,6 +67,16 @@ class Search extends Component {
           onClick={e => {
             this.attemptSearch(e)
           }}>Search</button>
+        <button
+          name='clear'
+          onClick={e => {
+            this.clearInputs(e)
+          }}>Clear</button>
+          {
+            this.state.results &&
+            <SearchResult results={this.state.results} />
+          }
+
       </div>
     )
   }
