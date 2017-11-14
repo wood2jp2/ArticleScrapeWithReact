@@ -17,7 +17,6 @@ class Results extends Component {
   saveArticle = e => {
     e.preventDefault();
     e.persist();
-    console.log(e.target.name);
     axios.put(`/api/articles/${e.target.name}`)
       .then(res => {
         console.log('save complete');
@@ -47,29 +46,19 @@ class Results extends Component {
       <div className='currentResults'>
         <h1>Results</h1>
         <button
-          onClick={(e) => {
+          onClick={ e => {
             this.fetchResults(e)
           }}>
           Fetch Results
         </button>
-          {this.state.results &&
-            this.state.results.map(x => {
-              return (
-                <div key={ x._id }>
-                   <a href={ x.url }
-                     target='_blank'><h1>{ x.title }</h1></a>
-                  <p>{ x.date }</p>
-                  {/* <ArticleComponent props={x} onClick={e=>{
-                    this.saveArticle(e)}}/> */}
-                  <button
-                    name= { x._id }
-                    onClick={e => {
-                      this.saveArticle(e)
-                    }}>Save</button>
-                </div>
-              )
-            })
-          }
+
+        <ArticleComponent
+            results={ this.state.results }
+            save={ true }
+            onClick={e => {
+              this.saveArticle(e)
+            }} />
+
       </div>
     )
   }

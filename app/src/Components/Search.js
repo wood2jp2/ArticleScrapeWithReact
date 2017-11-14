@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SearchResult from './SearchResult';
+import ArticleComponent from './ArticleComponent';
 
 class Search extends Component {
 
@@ -74,13 +74,12 @@ class Search extends Component {
           }}>Clear</button>
           {
             this.state.results &&
-            <SearchResult results={this.state.results} />
+            <ArticleComponent results={this.state.results} />
           }
 
       </div>
     )
   }
-
 }
 
 export default Search
