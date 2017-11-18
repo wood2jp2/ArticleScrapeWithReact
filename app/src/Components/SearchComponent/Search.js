@@ -21,11 +21,25 @@ class Search extends Component {
     console.log(this.state)
   }
 
+  saveArticle = e => {
+    e.preventDefault();
+    e.persist();
+    axios.put(`/api/articles/${e.target.name}`)
+      .then(res => {
+        console.log('save complete');
+        this.attemptSearch(e);
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }
+
   attemptSearch = e => {
     e.preventDefault();
     axios.get('/api/articles', {
       params: {
-        topic: this.state.topic
+        topic: this.state.topic,
+        saved: false
       }
     })
       .then( res => {
@@ -76,7 +90,9 @@ class Search extends Component {
           }}>Clear</button>
           {
             this.state.results &&
-            <ArticleComponent results={this.state.results} />
+            <ArticleComponent results={this.state.results} save= { true } onClick={ e => {
+              this.saveArticle(e)
+            }}/>
           }
 
       </div>
