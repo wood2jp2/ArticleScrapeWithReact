@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Results from './ResultsComponent/Results';
 import Search from './SearchComponent/Search';
-import Saved from './Saved';
+import Saved from './SavedComponent/Saved';
 
 class Main extends Component {
 

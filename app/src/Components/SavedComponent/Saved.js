@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ArticleComponent from './ArticleComponent/ArticleComponent';
+import ArticleComponent from '../ArticleComponent/ArticleComponent';
 
 class Saved extends Component {
 
@@ -11,8 +11,7 @@ class Saved extends Component {
     }
   }
 
-  refreshSaved = e => {
-    e.preventDefault();
+  componentDidMount() {
     axios.get('/api/saved')
       .then(res => {
         console.log(res.data);
@@ -32,17 +31,13 @@ class Saved extends Component {
       .catch(err => {
         return err
       });
-    this.refreshSaved(e);
+    this.componentDidMount();
   }
 
   render() {
     return (
       <div>
         <h1>Saved Articles</h1>
-        <button
-          onClick={e=> {
-            this.refreshSaved(e)
-          }}>Refresh Saved Articles</button>
 
           <ArticleComponent remove={ true } onClick={ e => {
             this.removeArticle(e)

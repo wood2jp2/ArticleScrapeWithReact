@@ -3,3 +3,7 @@
   margin: 6px;
   text-align: center
 }
+
+button {
+  border-radius: 5px;
+}

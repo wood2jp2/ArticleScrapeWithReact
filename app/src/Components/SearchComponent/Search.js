@@ -64,6 +64,7 @@ class Search extends Component {
           name='endYear'
           value={this.state.endYear}
           onChange={this.handleChange}></input>
+          <br />
         <button
           onClick={e => {
             this.attemptSearch(e)

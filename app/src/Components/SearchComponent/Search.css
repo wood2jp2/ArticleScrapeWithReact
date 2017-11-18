@@ -1,3 +1,8 @@
 .searchComponent {
   text-align: center;
 }
+
+button {
+  margin: 5px;
+  border-radius: 5px
+}
