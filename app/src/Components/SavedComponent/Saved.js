@@ -7,7 +7,7 @@ class Saved extends Component {
   constructor() {
     super();
     this.state = {
-      savedResults: []
+      results: []
     }
   }
 
@@ -16,7 +16,7 @@ class Saved extends Component {
       .then(res => {
         console.log(res.data);
         this.setState({
-          savedResults: res.data
+          results: res.data
         });
         console.log('saved results refreshed');
       })
@@ -39,25 +39,10 @@ class Saved extends Component {
       <div>
         <h1>Saved Articles</h1>
 
-          <ArticleComponent remove={ true } onClick={ e => {
+          <ArticleComponent results={ this.state.results } remove={ true } onClick={ e => {
             this.removeArticle(e)
           }} />
-          {this.state.savedResults &&
-            this.state.savedResults.map(x => {
-              return (
-                <div key={ x._id }>
-                  <a href={ x.url }
-                     target='_blank'><h1>{ x.title }</h1></a>
-                  <p>Date Saved: { x.savedDate }</p>
-                  <button
-                    name= { x._id }
-                    onClick={e => {
-                      this.removeArticle(e)
-                    }}>Remove</button>
-                </div>
-              )
-            })
-          }
+
       </div>
     )
   }

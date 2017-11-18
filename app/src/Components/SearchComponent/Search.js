@@ -18,7 +18,6 @@ class Search extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state)
   }
 
   saveArticle = e => {
@@ -43,10 +42,20 @@ class Search extends Component {
       }
     })
       .then( res => {
+        let checkForCopies = [];
+        for (let i = 0; i<res.data.length; i++) {
+          let currentResultTitle = res.data[i].title;
+          console.log(currentResultTitle);
+          for (let j = 0; j<checkForCopies.length; j++) {
+            console.log('hi');
+            checkForCopies[j].title === currentResultTitle ? console.log('copy') : checkForCopies.push(res.data[i])
+          }
+        };
+        console.log(checkForCopies);
         this.setState({
-          results: res.data
+          results: checkForCopies
         });
-        console.log(this.state.results);
+
       });
   }
 
