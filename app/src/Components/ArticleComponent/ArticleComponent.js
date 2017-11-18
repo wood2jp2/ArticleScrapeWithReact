@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ArticleComponent.css';
 
 const ArticleComponent = props => {
   return (
@@ -9,7 +10,8 @@ const ArticleComponent = props => {
         props.results.map(x => {
           return (
             <div
-              key={ x._id }>
+              key={ x._id }
+              className='articleComponent'>
               <a
                 href={ x.url }
                 target='_blank'><h1>{ x.title }</h1></a>
@@ -30,7 +32,7 @@ const ArticleComponent = props => {
                  onClick={ props.onClick }
                  >Remove</button>
              }
-             
+
             </div>
           )
         })

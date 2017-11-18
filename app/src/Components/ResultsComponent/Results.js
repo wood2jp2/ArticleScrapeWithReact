@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Saved from './Saved';
-import ArticleComponent from './ArticleComponent';
+import Saved from '../Saved';
+import './Results.css';
+import ArticleComponent from '../ArticleComponent/ArticleComponent';
 
 class Results extends Component {
   constructor(props) {

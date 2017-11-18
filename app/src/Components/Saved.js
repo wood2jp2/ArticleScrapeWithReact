@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ArticleComponent from './ArticleComponent';
+import ArticleComponent from './ArticleComponent/ArticleComponent';
 
 class Saved extends Component {
 

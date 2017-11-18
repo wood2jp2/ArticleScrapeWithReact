@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ArticleComponent from './ArticleComponent';
+import ArticleComponent from '../ArticleComponent/ArticleComponent';
+import './Search.css';
 
 class Search extends Component {
 

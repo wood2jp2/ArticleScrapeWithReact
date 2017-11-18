@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
 import Main from './Components/Main';
-import Search from './Components/Search';
+import Search from './Components/SearchComponent/Search';
 import Saved from './Components/Saved';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
