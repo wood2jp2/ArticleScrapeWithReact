@@ -20,15 +20,15 @@ class Results extends Component {
     axios.put(`/api/articles/${e.target.name}`)
       .then(res => {
         console.log('save complete');
-        this.fetchResults(e);
+        // this.fetchResults(e);
+        this.componentDidMount();
       })
       .catch(err => {
         console.log(err)
       });
   }
 
-  fetchResults = e => {
-    e.preventDefault();
+  componentDidMount() {
     axios.get('/api/articles', {
       'saved': false
     })
@@ -44,22 +44,13 @@ class Results extends Component {
   render() {
     return (
       <div className='currentResults'>
-        <h1>Results</h1>
-        <button
-          className='resultsButton'
-          onClick={ e => {
-            this.fetchResults(e)
-          }}>
-          Fetch Results
-        </button>
-
+        <h1>Current Results</h1>
         <ArticleComponent
             results={ this.state.results }
             save={ true }
             onClick={e => {
               this.saveArticle(e)
             }} />
-
       </div>
     )
   }

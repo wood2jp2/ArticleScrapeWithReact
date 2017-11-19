@@ -8,7 +8,8 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-      topic: ''
+      topic: '',
+      results: ''
     }
   }
 
@@ -64,7 +65,8 @@ class Search extends Component {
   clearInputs = e => {
     e.preventDefault();
     this.setState({
-      topic: ''
+      topic: '',
+      results: ''
     })
   }
 
