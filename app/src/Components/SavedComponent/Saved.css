@@ -1,8 +1,7 @@
-.savedArticle {
+.savedArticle, h1 {
   text-align: center;
 }
 
 button {
   padding: 10px
-
 }

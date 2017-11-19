@@ -8,9 +8,7 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-      topic: '',
-      startYear: '',
-      endYear: ''
+      topic: ''
     }
   }
 
@@ -42,18 +40,22 @@ class Search extends Component {
       }
     })
       .then( res => {
-        let checkForCopies = [];
-        for (let i = 0; i<res.data.length; i++) {
-          let currentResultTitle = res.data[i].title;
-          console.log(currentResultTitle);
-          for (let j = 0; j<checkForCopies.length; j++) {
-            console.log('hi');
-            checkForCopies[j].title === currentResultTitle ? console.log('copy') : checkForCopies.push(res.data[i])
-          }
-        };
-        console.log(checkForCopies);
+        // const checkForCopies = [];
+        // for (let i = 0; i<res.data.length; i++) {
+        //   let currentResultTitle = res.data[i].title;
+        //   console.log(currentResultTitle);
+        //   for (let j = 0; j<checkForCopies.length; j++) {
+        //     console.log('hi');
+        //     if (checkForCopies[j].title === currentResultTitle) {
+        //       console.log('copy');
+        //     } else {
+        //       checkForCopies.push(res.data[i])
+        //     };
+        //   }
+        // };
+        // console.log(checkForCopies);
         this.setState({
-          results: checkForCopies
+          results: res.data
         });
 
       });
@@ -62,9 +64,7 @@ class Search extends Component {
   clearInputs = e => {
     e.preventDefault();
     this.setState({
-      topic: '',
-      startYear: '',
-      endYear: ''
+      topic: ''
     })
   }
 
@@ -76,16 +76,6 @@ class Search extends Component {
         <input
           name='topic'
           value={this.state.topic}
-          onChange={this.handleChange}></input>
-        <h4>Start Year</h4>
-        <input
-          name='startYear'
-          value={this.state.startYear}
-          onChange={this.handleChange}></input>
-        <h4>End Year</h4>
-        <input
-          name='endYear'
-          value={this.state.endYear}
           onChange={this.handleChange}></input>
           <br />
         <button

@@ -46,6 +46,7 @@ class Results extends Component {
       <div className='currentResults'>
         <h1>Results</h1>
         <button
+          className='resultsButton'
           onClick={ e => {
             this.fetchResults(e)
           }}>

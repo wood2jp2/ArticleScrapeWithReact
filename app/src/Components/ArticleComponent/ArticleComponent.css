@@ -1,9 +1,19 @@
 .articleComponent {
   border: 2px black solid;
+  border-radius: 10px;
   margin: 6px;
-  text-align: center
+  text-align: center;
+  margin-right: 25%;
+  margin-left: 25%;
+  background-color: #487fa4;
+}
+
+a {
+  text-decoration: none;
 }
 
 button {
   border-radius: 5px;
+  background-color: #f78f3f;
+  font-weight: bold;
 }

@@ -7,7 +7,7 @@ const
   request = require('request'),
   port = process.env.PORT || 5000,
   app = express(),
-  localServer = "mongodb://localhost:27017/NYTreact08",
+  localServer = "mongodb://localhost:27017/NYTreact09",
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -69,9 +69,10 @@ app.get('/scrape', (req, res) => {
     const $ = cheerio.load(html);
 
     $('article.story').each(function(i, element) {
+
       var result = {};
 
-      result.title = $(this).find('h2').text();
+      result.title = $(this).find('h2').text().trim();
       result.url = $(this).find('a').attr('href');
       let date = $(this).find('time').attr('datetime');
       let convertToString = String(date).charAt(0);
@@ -88,11 +89,28 @@ app.get('/scrape', (req, res) => {
       };
 
       const entry = new Article(result);
-
       entry.save((err, doc) => {
-        err ? console.log(err) : console.log(doc)
+        if (err) {
+          console.log(err)
+        }
       });
-
+      // Article.count({
+      //   'title': result.title
+      // }, (err, count) => {
+      //   console.log(count);
+      //   var checkForCopy = count;
+      //   if (checkForCopy >= 1) {
+      //     console.log('theres more')
+      //   } else {
+      //     console.log('no copies');
+      //     const entry = new Article(result);
+      //     entry.save((err, doc) => {
+      //       if (err) {
+      //         console.log(err)
+      //       }
+      //     });
+      //   }
+      // });
     });
     res.send('something')
   });

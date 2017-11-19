@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
+import './Header.css';
 
-const Header = (props) => {
+const Header = props => {
     return (
-      <div>
+      <div className='head'>
         <header>
           <h1>New York Times Technology Article Scrubber</h1>
           <p>Search for and annotate articles of interest!</p>
-          <ul>
-            <li>
+            <p>
               {
                 window.location.pathname === '/saved' ? <Link to='/'>Search and Results</Link>
                 : <Link to='/saved'>Saved Articles</Link>
               }
-            </li>
-          </ul>
+          </p>
         </header>
       </div>
     )
