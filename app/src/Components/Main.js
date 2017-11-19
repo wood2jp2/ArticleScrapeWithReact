@@ -8,7 +8,7 @@ class Main extends Component {
 
 render() {
   return (
-    <div className='wholePage'>
+    <div>
       <Search />
       <Results />
     </div>
