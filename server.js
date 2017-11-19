@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
+app.use(bodyParser.json());
+
 // app.use(express.static('./app/public'));
 
 mongoose.connect(localServer, {
@@ -53,6 +55,13 @@ app.put('/api/articles/:id', (req, res) => {
     res.send(articles)
   });
 });
+
+app.post('/api/articles/:id', (req, res) => {
+  Article.findOneAndUpdate({
+    '_id': req.params.id
+  })
+  console.log(req);
+})
 
 app.delete('/api/saved/:id', (req, res) => {
   Article.find({

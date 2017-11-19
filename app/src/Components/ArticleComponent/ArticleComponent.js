@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ArticleComponent.css';
+import CommentComponent from './CommentComponent';
 
 const ArticleComponent = props => {
   return (
@@ -16,6 +17,7 @@ const ArticleComponent = props => {
                 href={ x.url }
                 target='_blank'><h1>{ x.title }</h1></a>
              <p>{ x.date }</p>
+             <CommentComponent article={ x._id }/>
 
              {
                props.save &&
@@ -32,7 +34,6 @@ const ArticleComponent = props => {
                  onClick={ props.onClick }
                  >Remove</button>
              }
-
             </div>
           )
         })
