@@ -17,10 +17,11 @@ class Results extends Component {
   saveArticle = e => {
     e.preventDefault();
     e.persist();
-    axios.put(`/api/articles/${e.target.name}`)
+    axios.put(`/api/articles/${e.target.name}`, {
+      saved: true
+    })
       .then(res => {
         console.log('save complete');
-        // this.fetchResults(e);
         this.componentDidMount();
       })
       .catch(err => {
@@ -29,9 +30,7 @@ class Results extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/articles', {
-      'saved': false
-    })
+    axios.get('/api/articles?saved=false')
       .then(res => {
         const topFiveResults = res.data.slice(0,5);
         this.setState ({
@@ -45,7 +44,7 @@ class Results extends Component {
     return (
       <div className='currentResults'>
         <h1>Current Results</h1>
-        <ArticleComponent
+          <ArticleComponent
             results={ this.state.results }
             save={ true }
             onClick={e => {

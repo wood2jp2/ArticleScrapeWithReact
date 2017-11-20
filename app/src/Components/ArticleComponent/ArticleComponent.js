@@ -24,6 +24,7 @@ const ArticleComponent = props => {
                <button
                  name={ x._id }
                  onClick={props.onClick}
+                 className='saveButton'
                  >Save</button>
              }
 
@@ -32,6 +33,7 @@ const ArticleComponent = props => {
                <button
                  name={ x._id }
                  onClick={ props.onClick }
+                 className='removeButton'
                  >Remove</button>
              }
             </div>

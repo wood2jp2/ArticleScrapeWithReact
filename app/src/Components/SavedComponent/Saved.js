@@ -13,41 +13,42 @@ class Saved extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/saved')
+    axios.get('/api/articles?saved=true')
       .then(res => {
         console.log(res.data);
         this.setState({
           results: res.data
         });
-        console.log('saved results refreshed');
       })
   }
 
   removeArticle = e => {
     e.preventDefault();
-    axios.delete(`/api/saved/${e.target.name}`)
+    axios.put(`/api/articles/${e.target.name}`, {
+      saved: false
+    })
       .then(res => {
-        console.log('deleted doc');
+        this.componentDidMount();
       })
-      .catch(err => {
-        return err
-      });
-    this.componentDidMount();
+      .catch( err => {
+        console.log(err)
+      })
   }
 
   render() {
     return (
       <div>
         <h1>Saved Articles</h1>
-
-          <ArticleComponent results={ this.state.results } remove={ true } onClick={ e => {
-            this.removeArticle(e)
-          }} />
+          <ArticleComponent
+            results={ this.state.results }
+            remove={ true }
+            onClick={ e => {
+              this.removeArticle(e)
+            }} />
 
       </div>
     )
   }
-
 }
 
 export default Saved

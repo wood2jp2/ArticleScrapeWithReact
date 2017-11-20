@@ -78,6 +78,7 @@ class Search extends Component {
         <input
           name='topic'
           value={this.state.topic}
+          placeholder='Search a keyword!'
           onChange={this.handleChange}></input>
           <br />
         <button

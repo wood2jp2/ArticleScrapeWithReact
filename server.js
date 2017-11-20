@@ -7,7 +7,7 @@ const
   request = require('request'),
   port = process.env.PORT || 5000,
   app = express(),
-  localServer = "mongodb://localhost:27017/NYTreact09",
+  localServer = "mongodb://localhost:27017/NYTreact10",
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -42,28 +42,17 @@ app.get('/api/saved', (req, res) => {
   })
 });
 
-app.put('/api/articles/:id', (req, res) => {
-  let date = new Date();
-  let cut = date.toString().slice(4,15);
-  console.log(req);
-  Article.findOneAndUpdate({
+app.post('/api/articles/:id', (req, res) => {
+  Article.update({
     '_id': req.params.id
   }, {
-    'saved': true,
-    'savedDate': cut
-  }, (err, articles) => {
-    res.send(articles)
-  });
-});
-
-app.post('/api/articles/:id', (req, res) => {
-  Article.findOneAndUpdate({
-    '_id': req.params.id
+    $push: {comment: req.body.comment}
+  }, (err, comment) => {
+    err ? console.log(err) : console.log('Comment successfully added')
   })
-  console.log(req);
 })
 
-app.delete('/api/saved/:id', (req, res) => {
+app.delete('/api/articles/:id', (req, res) => {
   Article.find({
     '_id': req.params.id
   })
@@ -125,13 +114,12 @@ app.get('/scrape', (req, res) => {
   });
 });
 
-app.put('/api/article/:id', (req, res) => {
+app.put('/api/articles/:id', (req, res) => {
   let date = new Date();
-  console.log(req);
   Article.findOneAndUpdate({
     '_id': req.params.id
   }, {
-    'saved': true,
+    'saved': req.body.saved,
     'savedDate': date
   }, (err, articles) => {
     res.send(articles)
@@ -139,19 +127,20 @@ app.put('/api/article/:id', (req, res) => {
 });
 
 app.get('/api/articles', (req, res) => {
-  console.log(req.query);
-  if (!req.query.topic) {
+  if (req.query.saved) {
     Article.find({
-      'saved': false
+      'saved': req.query.saved
     }, (err, articles) => {
+      res.send(articles)
+    })
+  } else if (!req.query.topic){
+    Article.find({}, (err, articles) => {
       res.send(articles)
     })
   } else {
    Article.find({
       'title': { '$regex': req.query.topic, "$options": "i" },
-      'saved': req.query.saved
     }, (err, articles) => {
-      console.log(articles);
       res.send(articles)
     });
   }
