@@ -127,6 +127,7 @@ app.put('/api/articles/:id', (req, res) => {
 });
 
 app.get('/api/articles', (req, res) => {
+  console.log(req.query)
   if (req.query.saved) {
     Article.find({
       'saved': req.query.saved
@@ -137,9 +138,10 @@ app.get('/api/articles', (req, res) => {
     Article.find({}, (err, articles) => {
       res.send(articles)
     })
-  } else {
+  } else if (req.query.topic) {
    Article.find({
       'title': { '$regex': req.query.topic, "$options": "i" },
+      'saved': req.query.savedSearch
     }, (err, articles) => {
       res.send(articles)
     });

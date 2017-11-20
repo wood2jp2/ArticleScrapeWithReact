@@ -22,7 +22,9 @@ class Search extends Component {
   saveArticle = e => {
     e.preventDefault();
     e.persist();
-    axios.put(`/api/articles/${e.target.name}`)
+    axios.put(`/api/articles/${e.target.name}`,{
+        saved: true
+      })
       .then(res => {
         console.log('save complete');
         this.attemptSearch(e);
@@ -37,24 +39,10 @@ class Search extends Component {
     axios.get('/api/articles', {
       params: {
         topic: this.state.topic,
-        saved: false
+        savedSearch: false
       }
     })
       .then( res => {
-        // const checkForCopies = [];
-        // for (let i = 0; i<res.data.length; i++) {
-        //   let currentResultTitle = res.data[i].title;
-        //   console.log(currentResultTitle);
-        //   for (let j = 0; j<checkForCopies.length; j++) {
-        //     console.log('hi');
-        //     if (checkForCopies[j].title === currentResultTitle) {
-        //       console.log('copy');
-        //     } else {
-        //       checkForCopies.push(res.data[i])
-        //     };
-        //   }
-        // };
-        // console.log(checkForCopies);
         this.setState({
           results: res.data
         });
