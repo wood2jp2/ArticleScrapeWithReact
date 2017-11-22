@@ -19,7 +19,8 @@ class CommentComponent extends Component {
       .then( res => {
         res.data.forEach( x => {
           this.setState({
-            commentNumber: x.comment.length
+            commentNumber: x.comment.length,
+            allComments: x.comment
           })
         })
       })
@@ -33,6 +34,7 @@ class CommentComponent extends Component {
     console.log(this.state.writtenComment)
   }
 
+// submitting a comment and posting to correct article
   handleSubmit = e => {
     e.preventDefault();
     this.setState({
@@ -49,10 +51,13 @@ class CommentComponent extends Component {
   }
 
   showComments = () => {
-    axios.get(`/api/articles/${this.state.articleId}`)
-      .then( res => {
-        console.log('show comments')
-      })
+    this.state.viewComments ?
+    this.setState({
+      viewComments: false
+    }) :
+    this.setState({
+      viewComments: true
+    })
   }
 
   handleClick = e => {
@@ -68,7 +73,10 @@ class CommentComponent extends Component {
         <span
           name='annotatedCommentSpan'
           onClick={ this.showComments }>
-          <p>{ this.state.commentNumber } comments </p>
+          <p>{
+            this.state.viewComments ?
+            'Hide' : 'Show'
+          } { this.state.commentNumber } comments </p>
         </span>
 
           {
@@ -90,6 +98,18 @@ class CommentComponent extends Component {
               onClick={ e => {
                 this.handleClick(e)
               }}>Add Comment</button>
+          }
+
+          {
+            this.state.viewComments &&
+            this.state.allComments.map( (x, i) => {
+              return (
+                <div
+                  key={i}>
+                  <p> Comment ({ i }): { x }</p>
+                </div>
+              )
+            })
           }
       </div>
     )
