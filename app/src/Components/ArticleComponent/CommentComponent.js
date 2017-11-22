@@ -13,6 +13,19 @@ class CommentComponent extends Component {
     }
   }
 
+// to set the number of comments for each article to the correct current count
+  componentDidMount() {
+    axios.get(`/api/articles/${this.state.articleId}`)
+      .then( res => {
+        res.data.forEach( x => {
+          this.setState({
+            commentNumber: x.comment.length
+          })
+        })
+      })
+  }
+
+// for tracking user inputted comments
   handleChange = e => {
     this.setState({
       writtenComment: e.target.value
@@ -35,6 +48,13 @@ class CommentComponent extends Component {
     })
   }
 
+  showComments = () => {
+    axios.get(`/api/articles/${this.state.articleId}`)
+      .then( res => {
+        console.log('show comments')
+      })
+  }
+
   handleClick = e => {
     e.preventDefault();
     this.setState({
@@ -45,7 +65,12 @@ class CommentComponent extends Component {
   render() {
     return (
       <div className='commentDiv'>
-        <p>{ this.state.commentNumber } comments </p>
+        <span
+          name='annotatedCommentSpan'
+          onClick={ this.showComments }>
+          <p>{ this.state.commentNumber } comments </p>
+        </span>
+
           {
             this.state.addingComment ?
             <div>

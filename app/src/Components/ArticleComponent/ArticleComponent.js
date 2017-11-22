@@ -20,22 +20,20 @@ const ArticleComponent = props => {
              <CommentComponent article={ x._id }/>
 
              {
-               props.save &&
+               props.save ?
                <button
                  name={ x._id }
                  onClick={props.onClick}
                  className='saveButton'
                  >Save</button>
-             }
-
-             {
-               props.remove &&
+                 :
                <button
                  name={ x._id }
                  onClick={ props.onClick }
                  className='removeButton'
                  >Remove</button>
              }
+             
             </div>
           )
         })

@@ -42,6 +42,14 @@ app.get('/api/saved', (req, res) => {
   })
 });
 
+app.get('/api/articles/:id', (req, res) => {
+  Article.find({
+    '_id': req.params.id
+  }, (err, article) => {
+    res.send(article)
+  });
+})
+
 app.post('/api/articles/:id', (req, res) => {
   Article.update({
     '_id': req.params.id
