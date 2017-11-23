@@ -69,6 +69,17 @@ class CommentComponent extends Component {
     })
   }
 
+  deleteComment = e => {
+    e.preventDefault();
+    axios.put(`/api/articles/${this.state.articleId}`,
+    {
+      body: 'hey'
+    })
+      .then( res => {
+        console.log(res.data)
+      })
+  }
+
   render() {
     return (
       <div className='commentDiv'>
@@ -86,6 +97,7 @@ class CommentComponent extends Component {
             <div>
               <input
                 name='commentField'
+                placeholder='Add a comment!'
                 value={ this.state.writtenComment }
                 onChange={ this.handleChange }></input>
               <button
@@ -105,10 +117,15 @@ class CommentComponent extends Component {
           {
             this.state.viewComments &&
             this.state.allComments.map( (x, i) => {
+              console.log(x);
               return (
                 <div
                   key={i}>
-                  <p> Comment ({ i + 1 }): { x }</p>
+                  <p> Comment ({ i + 1 }): { x }</p><button
+                    className='deleteButton'
+                    onClick={ e => {
+                      this.deleteComment(e)
+                    }}>X</button>
                 </div>
               )
             })

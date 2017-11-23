@@ -29,6 +29,13 @@ class Results extends Component {
       });
   }
 
+  // componentWillMount() {
+  //   axios.get('/scrape')
+  //     .then( res => {
+  //       console.log('trying to scrape first')
+  //     })
+  // }
+
   componentDidMount() {
     axios.get('/api/articles?saved=false')
       .then(res => {

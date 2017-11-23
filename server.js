@@ -123,15 +123,21 @@ app.get('/scrape', (req, res) => {
 });
 
 app.put('/api/articles/:id', (req, res) => {
-  let date = new Date();
-  Article.findOneAndUpdate({
-    '_id': req.params.id
-  }, {
-    'saved': req.body.saved,
-    'savedDate': date
-  }, (err, articles) => {
-    res.send(articles)
-  });
+  console.log(req.body);
+  if (req.body.saved) {
+    let date = new Date();
+    Article.findOneAndUpdate({
+      '_id': req.params.id
+    }, {
+      'saved': req.body.saved,
+      'savedDate': date
+    }, (err, articles) => {
+      res.send(articles)
+    });
+  } else {
+    res.send('attemptiong to delete something')
+  }
+
 });
 
 app.get('/api/articles', (req, res) => {
