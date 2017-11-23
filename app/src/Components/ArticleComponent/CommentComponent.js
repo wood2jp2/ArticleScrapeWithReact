@@ -39,6 +39,7 @@ class CommentComponent extends Component {
     e.preventDefault();
     this.setState({
       addingComment: false,
+      writtenComment: '',
       commentNumber: this.state.commentNumber + 1
     });
     axios.post(`/api/articles/${this.state.articleId}`, {
@@ -47,7 +48,8 @@ class CommentComponent extends Component {
     )
     .then( res => {
       console.log('Comment has been added!')
-    })
+    });
+    this.componentDidMount();
   }
 
   showComments = () => {
@@ -76,7 +78,7 @@ class CommentComponent extends Component {
           <p>{
             this.state.viewComments ?
             'Hide' : 'Show'
-          } { this.state.commentNumber } comments </p>
+          } { this.state.commentNumber} comments </p>
         </span>
 
           {
@@ -106,7 +108,7 @@ class CommentComponent extends Component {
               return (
                 <div
                   key={i}>
-                  <p> Comment ({ i }): { x }</p>
+                  <p> Comment ({ i + 1 }): { x }</p>
                 </div>
               )
             })
