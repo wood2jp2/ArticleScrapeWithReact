@@ -100,23 +100,6 @@ app.get('/scrape', (req, res) => {
           console.log(err)
         }
       });
-      // Article.count({
-      //   'title': result.title
-      // }, (err, count) => {
-      //   console.log(count);
-      //   var checkForCopy = count;
-      //   if (checkForCopy >= 1) {
-      //     console.log('theres more')
-      //   } else {
-      //     console.log('no copies');
-      //     const entry = new Article(result);
-      //     entry.save((err, doc) => {
-      //       if (err) {
-      //         console.log(err)
-      //       }
-      //     });
-      //   }
-      // });
     });
     res.send('something')
   });
@@ -135,7 +118,13 @@ app.put('/api/articles/:id', (req, res) => {
       res.send(articles)
     });
   } else {
-    res.send('attemptiong to delete something')
+    Article.update({
+      '_id': req.params.id
+    }, {
+      $pull: {'comment': req.body.body}
+    }, (err, articles) => {
+      res.send(articles)
+    })
   }
 
 });

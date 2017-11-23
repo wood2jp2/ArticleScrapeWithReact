@@ -69,14 +69,14 @@ class CommentComponent extends Component {
     })
   }
 
-  deleteComment = e => {
+  deleteComment = (e, x) => {
     e.preventDefault();
     axios.put(`/api/articles/${this.state.articleId}`,
     {
-      body: 'hey'
+      body: x
     })
       .then( res => {
-        console.log(res.data)
+        this.componentDidMount()
       })
   }
 
@@ -117,14 +117,13 @@ class CommentComponent extends Component {
           {
             this.state.viewComments &&
             this.state.allComments.map( (x, i) => {
-              console.log(x);
               return (
                 <div
                   key={i}>
                   <p> Comment ({ i + 1 }): { x }</p><button
                     className='deleteButton'
                     onClick={ e => {
-                      this.deleteComment(e)
+                      this.deleteComment(e, x)
                     }}>X</button>
                 </div>
               )
