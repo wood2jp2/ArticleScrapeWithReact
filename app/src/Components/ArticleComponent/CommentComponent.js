@@ -18,6 +18,7 @@ class CommentComponent extends Component {
     axios.get(`/api/articles/${this.state.articleId}`)
       .then( res => {
         res.data.forEach( x => {
+          console.log(x);
           this.setState({
             commentNumber: x.comment.length,
             allComments: x.comment
@@ -31,7 +32,6 @@ class CommentComponent extends Component {
     this.setState({
       writtenComment: e.target.value
     });
-    console.log(this.state.writtenComment)
   }
 
 // submitting a comment and posting to correct article
@@ -115,7 +115,7 @@ class CommentComponent extends Component {
           }
 
           {
-            this.state.viewComments &&
+            this.state.viewComments && this.state.allComments.length > 0 ?
             this.state.allComments.map( (x, i) => {
               return (
                 <div
@@ -127,7 +127,10 @@ class CommentComponent extends Component {
                     }}>X</button>
                 </div>
               )
-            })
+            }) : this.state.viewComments && this.state.allComments.length === 0 ?
+                <p>No comments to show!</p> : console.log('anything')
+
+
           }
       </div>
     )

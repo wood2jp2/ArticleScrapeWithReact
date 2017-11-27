@@ -15,7 +15,7 @@ class Saved extends Component {
   componentDidMount() {
     axios.get('/api/articles?saved=true')
       .then(res => {
-        console.log(res.data);
+        console.log('successful saved pull');
         this.setState({
           results: res.data
         });
