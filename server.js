@@ -8,7 +8,7 @@ const
   port = process.env.PORT || 5000,
   app = express(),
   localServer = "mongodb://localhost:27017/NYTreact10",
-  MONGODB_URI = 'mongodb://<dbuser>:<dbpassword>@ds147304.mlab.com:47304/heroku_c23skv0q',
+  MONGODB_URI = 'mongodb://heroku_c23skv0q:a42ggrjgd6fejisvgf66sd10cm@ds147304.mlab.com:47304/heroku_c23skv0q',
   blahblah = localServer || MONGODB_URI,
   db = mongoose.connection;
 
