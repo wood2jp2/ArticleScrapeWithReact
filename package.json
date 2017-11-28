@@ -1,7 +1,7 @@
 {
   "name": "articlescrapewithreact",
   "version": "1.0.0",
-  "description": "scraping medium with react",
+  "description": "scraping nyt with react",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
