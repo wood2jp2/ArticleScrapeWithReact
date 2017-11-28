@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './CommentComponent.css';
 import axios from 'axios';
 
 class CommentComponent extends Component {
@@ -108,7 +109,7 @@ class CommentComponent extends Component {
             </div>
             :
             <button
-              name='addCommentButton'
+              className='addCommentButton'
               onClick={ e => {
                 this.handleClick(e)
               }}>Add Comment</button>
@@ -119,8 +120,11 @@ class CommentComponent extends Component {
             this.state.allComments.map( (x, i) => {
               return (
                 <div
+                  className='eachComment'
                   key={i}>
-                  <p> Comment ({ i + 1 }): { x }</p><button
+                  <p
+                    className='commentMaterial'> Comment ({ i + 1 }): { x }</p>
+                  <button
                     className='deleteButton'
                     onClick={ e => {
                       this.deleteComment(e, x)

@@ -8,6 +8,7 @@ const
   port = process.env.PORT || 5000,
   app = express(),
   localServer = "mongodb://localhost:27017/NYTreact10",
+  MONGODB_URI = 'mongodb://<dbuser>:<dbpassword>@ds147304.mlab.com:47304/heroku_c23skv0q',
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -18,7 +19,7 @@ app.use(bodyParser.json());
 
 // app.use(express.static('./app/public'));
 
-mongoose.connect(localServer, {
+mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 

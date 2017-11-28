@@ -5,7 +5,8 @@ import './Header.css';
 const Header = props => {
     return (
       <div className='head'>
-        <header>
+        <header
+          className='wholeHeader'>
           <h1>New York Times Technology Article Scrubber</h1>
           <p>Search for and annotate articles of interest!</p>
             <p>

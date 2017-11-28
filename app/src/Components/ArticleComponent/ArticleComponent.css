@@ -8,6 +8,10 @@
   background-color: #CB81E5;
 }
 
+.saveButton, .removeButton {
+  display: inline-block;
+}
+
 a {
   text-decoration: none;
 }
@@ -16,5 +20,4 @@ button {
   border-radius: 5px;
   background-color: #f78f3f;
   font-weight: bold;
-  display: inline-block
 }

@@ -1,1 +1,13 @@
+.deleteButton {
+  background-color: red;
+  width: 5%;
+  float: right
+}
 
+.commentMaterial, .addCommentButton, .deleteButton {
+  display: inline-block;
+}
+
+.eachComment {
+  padding-top: 5px
+}

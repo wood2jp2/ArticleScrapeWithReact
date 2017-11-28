@@ -43,7 +43,6 @@ class Results extends Component {
         this.setState ({
           results: topFiveResults
         });
-        console.log(this.state.results)
       })
   }
 
