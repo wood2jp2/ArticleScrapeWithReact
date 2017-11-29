@@ -9,7 +9,6 @@ const
   app = express(),
   localServer = "mongodb://localhost:27017/NYTreact10",
   MONGODB_URI = 'mongodb://heroku_c23skv0q:a42ggrjgd6fejisvgf66sd10cm@ds147304.mlab.com:47304/heroku_c23skv0q',
-  blahblah = localServer || MONGODB_URI,
   db = mongoose.connection;
 
 app.use(bodyParser.urlencoded({
@@ -20,7 +19,7 @@ app.use(bodyParser.json());
 
 // app.use(express.static('./app/public'));
 
-mongoose.connect(blahblah, {
+mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
