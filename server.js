@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 // app.use(express.static('./app/public'));
 
-mongoose.connect(localServer, {
+mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
 
