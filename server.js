@@ -32,7 +32,7 @@ db.once('open', () => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html')
+  res.sendFile(__dirname + '/build/index.html')
 });
 
 app.get('/api/saved', (req, res) => {
