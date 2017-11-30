@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-// app.use(express.static('./app'));
+app.use(express.static('./app'));
 
 mongoose.connect(MONGODB_URI, {
   useMongoClient: true
