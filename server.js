@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 // app.use(express.static('./app/public'));
 
-mongoose.connect(MONGODB_URI, {
+mongoose.connect(localServer, {
   useMongoClient: true
 });
 
@@ -32,7 +32,7 @@ db.once('open', () => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + "/app/public/index.html");
+  res.sendFile(__dirname + './app/build/index.html')
 });
 
 app.get('/api/saved', (req, res) => {
