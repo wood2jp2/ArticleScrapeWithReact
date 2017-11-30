@@ -31,9 +31,9 @@ db.once('open', () => {
   console.log('Mongoose connection successful')
 });
 
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/public/index.html')
-// });
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html')
+});
 
 app.get('/api/saved', (req, res) => {
   Article.find({
