@@ -24,9 +24,7 @@ class Saved extends Component {
 
   removeArticle = e => {
     e.preventDefault();
-    axios.put(`/api/articles/${e.target.name}`, {
-      saved: false
-    })
+    axios.delete(`/api/articles/${e.target.name}`)
       .then(res => {
         this.componentDidMount();
       })
