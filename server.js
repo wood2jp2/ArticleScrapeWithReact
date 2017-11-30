@@ -151,13 +151,13 @@ app.get('/api/articles', (req, res) => {
   }
 });
 
-// app.get("*", function(req, res) {
-//   if ( process.env.NODE_ENV === 'production' ) {
-//     res.sendFile(__dirname + "/app/public/index.html");
-//   } else {
-//     res.sendFile(__dirname + "/app/public/index.html");
-//   }
-// });
+app.get("*", function(req, res) {
+  if ( process.env.NODE_ENV === 'production' ) {
+    res.sendFile(__dirname + "/app/public/index.html");
+  } else {
+    res.sendFile(__dirname + "/app/public/index.html");
+  }
+});
 
 app.listen(port, () => {
   console.log(`App running on port ${port}`)
