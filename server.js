@@ -33,7 +33,6 @@ db.once('open', () => {
 
 app.get('/', (req, res) => {
   res.sendFile('./index.html');
-  console.log('biggity boooooooo')
 });
 
 app.get('/api/saved', (req, res) => {
