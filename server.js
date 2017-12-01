@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-app.use(express.static('app'));
+app.use(express.static('./app/build'));
 
 mongoose.connect(MONGODB_URI, {
   useMongoClient: true
@@ -32,7 +32,7 @@ db.once('open', () => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/build/index.html');
+  res.sendFile('./index.html');
   console.log('biggity boooooooo')
 });
 
